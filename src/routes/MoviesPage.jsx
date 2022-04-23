@@ -28,6 +28,7 @@ export default function MoviesPage() {
   const handleClick = () => {
     navigate(-1);
   };
+
   return (
     <div>
       <button

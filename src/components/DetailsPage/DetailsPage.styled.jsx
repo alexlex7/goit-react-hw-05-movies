@@ -19,9 +19,3 @@ export const PosterImg = styled.img`
 export const InfoContainer = styled.div`
   margin-left: 15px;
 `;
-
-export const AdditionalInfoContainer = styled.div`
-  padding: 15px;
-`;
-
-// export const ListInfo = styled.ul``;

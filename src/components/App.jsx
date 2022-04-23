@@ -11,9 +11,7 @@ const MoviesPage = lazy(() =>
 );
 
 const MovieDetailsPage = lazy(() =>
-  import(
-    './MovieDetailsPage/MovieDetailsPage.jsx' /* webpackChunkName: "detail-page" */
-  )
+  import('../routes/MovieDetailsPage.jsx' /* webpackChunkName: "detail-page" */)
 );
 
 export const App = () => {

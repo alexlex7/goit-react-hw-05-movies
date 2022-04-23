@@ -1,15 +1,9 @@
 import Cast from 'components/Cast/Cast';
+import DetailsPage from 'components/DetailsPage/DetailsPage';
 import Reviews from 'components/Reviews/Reviews';
 import { useEffect, useState } from 'react';
 import { Link, Route, Routes, useParams, useNavigate } from 'react-router-dom';
 import { getMovieById } from 'services/movieAPI';
-import {
-  AdditionalInfoContainer,
-  DetailsContainer,
-  ImgThumb,
-  InfoContainer,
-  PosterImg,
-} from './MovieDetailsPage.styled';
 
 export default function MovieDetailsPage() {
   const { movieId } = useParams();
@@ -25,7 +19,6 @@ export default function MovieDetailsPage() {
     navigate(-1);
   };
 
-  const genres = ({ genres }) => genres.map(genre => genre.name).join(' ');
   return (
     <>
       <button
@@ -35,27 +28,9 @@ export default function MovieDetailsPage() {
       >
         Back
       </button>
-      {movie.hasOwnProperty('id') && (
-        <DetailsContainer>
-          <ImgThumb>
-            <PosterImg
-              src={`https://image.tmdb.org/t/p/w400${movie.poster_path}`}
-              alt={movie.original_title}
-            />
-          </ImgThumb>
+      {movie.hasOwnProperty('id') && <DetailsPage movie={movie} />}
 
-          <InfoContainer>
-            <h3>{movie.original_title}</h3>
-            <p>User Score: {movie.vote_average * 10}%</p>
-            <h4>Overview</h4>
-            <p>{movie.overview}</p>
-            <h4>Genres</h4>
-            <p>{genres(movie)}</p>
-          </InfoContainer>
-        </DetailsContainer>
-      )}
-
-      <AdditionalInfoContainer>
+      <div style={{ padding: '15px' }}>
         <h4>Additional information</h4>
         <ul>
           <li>
@@ -65,7 +40,7 @@ export default function MovieDetailsPage() {
             <Link to={`/movies/${movieId}/reviews`}>Reviews</Link>
           </li>
         </ul>
-      </AdditionalInfoContainer>
+      </div>
 
       <Routes>
         <Route path="cast" element={<Cast />} />
